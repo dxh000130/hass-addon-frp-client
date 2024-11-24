@@ -25,7 +25,7 @@ options:
   webServerPort: 7500
   webServerUser: "admin"
   webServerPassword: "123456789"
-  customDomain: "example.com"
+  subdomain: "example.com"
   proxyName: "homeassistant"
 schema:
   serverAddr: str
