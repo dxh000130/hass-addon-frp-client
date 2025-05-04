@@ -27,6 +27,9 @@ options:
   webServerPassword: "123456789"
   subdomain: "example.com"
   proxyName: "homeassistant"
+  sshproxyName: "homeassistantssh
+  localPort: "localPort
+  remotePort: "remotePort"
 schema:
   serverAddr: str
   serverPort: int
@@ -36,3 +39,6 @@ schema:
   webServerPassword: str
   subdomain: str
   proxyName: str
+  sshproxyName: str
+  sshproxyName: int
+  sshproxyName: int
