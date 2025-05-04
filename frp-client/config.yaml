@@ -28,8 +28,8 @@ options:
   subdomain: "example.com"
   proxyName: "homeassistant"
   sshproxyName: "homeassistantssh"
-  localPort: "localPort"
-  remotePort: "remotePort"
+  localPort: 24
+  remotePort: 6001
 schema:
   serverAddr: str
   serverPort: int
