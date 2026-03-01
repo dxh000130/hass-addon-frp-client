@@ -42,3 +42,9 @@ type = "tcp"
 localIP = "127.0.0.1"
 localPort = 24
 remotePort = 6006
+[[proxies]]
+name = "your_hypanel_name"
+type = "tcp"
+localIP = "hypanel_ip"
+localPort = 80
+remotePort = 0

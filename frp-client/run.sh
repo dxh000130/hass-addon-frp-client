@@ -21,7 +21,8 @@ sed -i "s/name = \"your_proxy_name\"/name = \"$(bashio::config 'proxyName')\"/" 
 sed -i "s/name = \"yoursshname\"/name = \"$(bashio::config 'sshproxyName')\"/" $CONFIG_PATH
 sed -i "s/localPort = 24/localPort = $(bashio::config 'localPort')/" $CONFIG_PATH
 sed -i "s/remotePort = 6006/remotePort = $(bashio::config 'remotePort')/" $CONFIG_PATH
-
+sed -i "s/hypanelName = your_hypanel_name/hypanelName = $(bashio::config 'localPort')/" $CONFIG_PATH
+sed -i "s/hypanelIP = hypanel_ip/hypanelIP = $(bashio::config 'hypanelIP')/" $CONFIG_PATH
 bashio::log.info "Starting frp client"
 
 cat $CONFIG_PATH
