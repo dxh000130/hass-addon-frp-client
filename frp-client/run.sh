@@ -23,9 +23,18 @@ sed -i "s/localPort = 24/localPort = $(bashio::config 'localPort')/" $CONFIG_PAT
 sed -i "s/remotePort = 6006/remotePort = $(bashio::config 'remotePort')/" $CONFIG_PATH
 if bashio::config.true 'enableHypanel'; then
   bashio::log.info "Hypanel proxy enabled."
+  # http / https 切换
+  if bashio::config.true 'hypanelHttps'; then
+    HYPANEL_TYPE="https"
+  else
+    HYPANEL_TYPE="http"
+  fi
+
+  sed -i "s/type = \"HYPANEL_TYPE\"/type = \"$HYPANEL_TYPE\"/" $CONFIG_PATH
   sed -i "s/name = \"your_hypanel_name\"/name = \"$(bashio::config 'hypanelName')\"/" $CONFIG_PATH
   sed -i "s/localIP = \"hypanel_ip\"/localIP = \"$(bashio::config 'hypanelIP')\"/" $CONFIG_PATH
   sed -i "s/localPort = hypanel_port/localPort = $(bashio::config 'hypanelPort')/" $CONFIG_PATH
+  
 else
   bashio::log.info "Hypanel proxy disabled. Removing block."
   sed -i '/# --- HYPANEL BEGIN ---/,/# --- HYPANEL END ---/d' $CONFIG_PATH
