@@ -46,7 +46,7 @@ remotePort = 6006
 [[proxies]]
 name = "your_hypanel_name"
 type = "HYPANEL_TYPE"
-subdomain = "hypaneldebug"
+subdomain = "HYPANEL_SUBDOMAIN"
 localIP = "hypanel_ip"
 localPort = hypanel_port
 

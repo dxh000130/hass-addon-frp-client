@@ -26,11 +26,14 @@ if bashio::config.true 'enableHypanel'; then
   # http / https 切换
   if bashio::config.true 'hypanelHttps'; then
     HYPANEL_TYPE="https"
+	HYPANEL_SUBDOMAIN="hypaneldebug" 
   else
     HYPANEL_TYPE="http"
+	HYPANEL_SUBDOMAIN="hypaneldebughttp"
   fi
 
   sed -i "s/type = \"HYPANEL_TYPE\"/type = \"$HYPANEL_TYPE\"/" $CONFIG_PATH
+  sed -i "s/subdomain = \"HYPANEL_SUBDOMAIN\"/subdomain = \"$HYPANEL_SUBDOMAIN\"/" $CONFIG_PATH
   sed -i "s/name = \"your_hypanel_name\"/name = \"$(bashio::config 'hypanelName')\"/" $CONFIG_PATH
   sed -i "s/localIP = \"hypanel_ip\"/localIP = \"$(bashio::config 'hypanelIP')\"/" $CONFIG_PATH
   sed -i "s/localPort = hypanel_port/localPort = $(bashio::config 'hypanelPort')/" $CONFIG_PATH
