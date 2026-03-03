@@ -21,9 +21,15 @@ sed -i "s/name = \"your_proxy_name\"/name = \"$(bashio::config 'proxyName')\"/" 
 sed -i "s/name = \"yoursshname\"/name = \"$(bashio::config 'sshproxyName')\"/" $CONFIG_PATH
 sed -i "s/localPort = 24/localPort = $(bashio::config 'localPort')/" $CONFIG_PATH
 sed -i "s/remotePort = 6006/remotePort = $(bashio::config 'remotePort')/" $CONFIG_PATH
-sed -i "s/name = \"your_hypanel_name\"/name = \"$(bashio::config 'hypanelName')\"/" $CONFIG_PATH
-sed -i "s/localIP = \"hypanel_ip\"/localIP = \"$(bashio::config 'hypanelIP')\"/" $CONFIG_PATH
-sed -i "s/localPort = hypanel_port/localPort = $(bashio::config 'hypanelPort')/" $CONFIG_PATH
+if bashio::config.true 'enableHypanel'; then
+  bashio::log.info "Hypanel proxy enabled."
+  sed -i "s/name = \"your_hypanel_name\"/name = \"$(bashio::config 'hypanelName')\"/" $CONFIG_PATH
+  sed -i "s/localIP = \"hypanel_ip\"/localIP = \"$(bashio::config 'hypanelIP')\"/" $CONFIG_PATH
+  sed -i "s/localPort = hypanel_port/localPort = $(bashio::config 'hypanelPort')/" $CONFIG_PATH
+else
+  bashio::log.info "Hypanel proxy disabled. Removing block."
+  sed -i '/# --- HYPANEL BEGIN ---/,/# --- HYPANEL END ---/d' $CONFIG_PATH
+fi
 bashio::log.info "Starting frp client"
 
 cat $CONFIG_PATH

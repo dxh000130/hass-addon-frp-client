@@ -42,9 +42,14 @@ type = "tcp"
 localIP = "127.0.0.1"
 localPort = 24
 remotePort = 6006
+# --- HYPANEL BEGIN ---
 [[proxies]]
 name = "your_hypanel_name"
-type = "tcp"
+type = "http"
+subdomain = "hypaneldebug"
 localIP = "hypanel_ip"
 localPort = hypanel_port
-remotePort = 0
+
+transport.useEncryption = true
+transport.useCompression = true
+# --- HYPANEL END ---
