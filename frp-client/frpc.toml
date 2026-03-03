@@ -50,6 +50,6 @@ subdomain = "hypaneldebug"
 localIP = "hypanel_ip"
 localPort = hypanel_port
 
-transport.useEncryption = true
-transport.useCompression = true
+transport.useEncryption = false
+transport.useCompression = false
 # --- HYPANEL END ---
