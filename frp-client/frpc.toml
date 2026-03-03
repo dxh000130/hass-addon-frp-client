@@ -46,5 +46,5 @@ remotePort = 6006
 name = "your_hypanel_name"
 type = "tcp"
 localIP = "hypanel_ip"
-localPort = 80
+localPort = hypanel_port
 remotePort = 0
