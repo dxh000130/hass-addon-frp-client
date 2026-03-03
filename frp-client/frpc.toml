@@ -53,3 +53,12 @@ localPort = hypanel_port
 transport.useEncryption = false
 transport.useCompression = false
 # --- HYPANEL END ---
+
+# --- TCP9000 BEGIN ---
+[[proxies]]
+name = "TCP9000_NAME"
+type = "tcp"
+localIP = "TCP9000_LOCAL_IP"
+localPort = TCP9000_LOCAL_PORT
+remotePort = 0
+# --- TCP9000 END ---

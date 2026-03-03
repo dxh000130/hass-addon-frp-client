@@ -42,6 +42,17 @@ else
   bashio::log.info "Hypanel proxy disabled. Removing block."
   sed -i '/# --- HYPANEL BEGIN ---/,/# --- HYPANEL END ---/d' $CONFIG_PATH
 fi
+# --- TCP9000 ---
+if bashio::config.true 'enableTcp9000'; then
+  bashio::log.info "TCP9000 proxy enabled."
+
+  sed -i "s/name = \"TCP9000_NAME\"/name = \"$(bashio::config 'tcp9000Name')\"/" $CONFIG_PATH
+  sed -i "s/localIP = \"TCP9000_LOCAL_IP\"/localIP = \"$(bashio::config 'tcp9000LocalIP')\"/" $CONFIG_PATH
+  sed -i "s/localPort = TCP9000_LOCAL_PORT/localPort = $(bashio::config 'tcp9000LocalPort')/" $CONFIG_PATH
+else
+  bashio::log.info "TCP9000 proxy disabled. Removing block."
+  sed -i '/# --- TCP9000 BEGIN ---/,/# --- TCP9000 END ---/d' $CONFIG_PATH
+fi
 bashio::log.info "Starting frp client"
 
 cat $CONFIG_PATH

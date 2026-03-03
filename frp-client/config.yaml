@@ -1,6 +1,6 @@
 name: "FRP Client"
 description: "You can use this tool to achieve remote access to local Home Assistant OS by port forwarding"
-version: "1.0.11"
+version: "1.0.12"
 slug: "frp_client"
 host_network: true
 startup: application
@@ -35,6 +35,10 @@ options:
   hypanelName: "hypanel"
   hypanelIP: "1.1.1.1"
   hypanelPort: 80
+  enableTcp9000: false
+  tcp9000Name: "tcp9000"
+  tcp9000LocalIP: "127.0.0.1"
+  tcp9000LocalPort: 8123
 schema:
   serverAddr: str
   serverPort: int
@@ -52,3 +56,7 @@ schema:
   hypanelName: str
   hypanelIP: str
   hypanelPort: int
+  enableTcp9000: bool
+  tcp9000Name: str
+  tcp9000LocalIP: str
+  tcp9000LocalPort: int
